@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import {
   Product,
@@ -18,6 +18,7 @@ export class ProductsComponent {
   myShoppingCart: Product[] = [];
   total = 0;
   @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter();
   showProductDetail = false;
   productChosen: Product | null = null;
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
@@ -101,4 +102,8 @@ export class ProductsComponent {
   //     this.offset += this.limit;
   //   });
   // }
+
+  onLoadMore() {
+    this.loadMore.emit();
+  }
 }

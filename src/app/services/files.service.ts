@@ -7,21 +7,18 @@ import { environment } from './../../environments/environment';
 import { FileRta } from './../models/files.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FilesService {
+  //private apiUrl = `${environment.API_URL}/api/files`;
+  private apiUrl = `${environment.API_URL}/api/v1/files`;
 
-  private apiUrl = `${environment.API_URL}/api/files`;
-
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   getFile(name: string, url: string, type: string) {
-    return this.http.get(url, {responseType: 'blob'})
-    .pipe(
-      tap(content => {
-        const blob = new Blob([content], {type});
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+      tap((content) => {
+        const blob = new Blob([content], { type });
         saveAs(blob, name);
       }),
       map(() => true)
@@ -31,6 +28,6 @@ export class FilesService {
   uploadFile(file: Blob) {
     const dto = new FormData();
     dto.append('file', file);
-    return this.http.post<FileRta>(`${this.apiUrl}/upload`, dto)
+    return this.http.post<FileRta>(`${this.apiUrl}/upload`, dto);
   }
 }

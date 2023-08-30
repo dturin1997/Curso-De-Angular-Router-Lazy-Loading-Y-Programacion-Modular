@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-category',
   template: `<app-products
+    [productId]="productId"
     [products]="products"
     (loadMore)="onLoadMore()"
   ></app-products>`,
@@ -17,6 +18,7 @@ export class CategoryComponent implements OnInit {
   offset = 0;
   products: Product[] = [];
   categoryId: string | null = null;
+  productId: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +43,10 @@ export class CategoryComponent implements OnInit {
       .subscribe((data) => {
         this.products = data;
       });
+    this.route.queryParamMap.subscribe((params) => {
+      this.productId = params.get('product');
+      console.log(this.productId);
+    });
   }
 
   onLoadMore() {

@@ -22,6 +22,7 @@ export class ProductsComponent {
   @Input()
   set productId(id: string | null) {
     if (id) {
+      console.log(id);
       this.onShowDetail(id);
     }
   }

@@ -1,53 +1,61 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { MyCartComponent } from './pages/mycart/mycart.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { RecoveryComponent } from './pages/recovery/recovery.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { LayoutComponent } from 'src/app/website/components/layout/layout.component';
+
+import { HomeComponent } from 'src/app/website/pages/home/home.component';
+import { NotFoundComponent } from 'src/app/website/pages/not-found/not-found.component';
+import { CategoryComponent } from 'src/app/website/pages/category/category.component';
+import { MyCartComponent } from 'src/app/website/pages/mycart/mycart.component';
+import { LoginComponent } from 'src/app/website/pages/login/login.component';
+import { RegisterComponent } from 'src/app/website/pages/register/register.component';
+import { RecoveryComponent } from 'src/app/website/pages/recovery/recovery.component';
+import { ProfileComponent } from 'src/app/website/pages/profile/profile.component';
+import { ProductDetailComponent } from 'src/app/website/pages/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-  },
-  {
-    path: 'category/:id',
-    component: CategoryComponent,
-  },
-  {
-    path: 'product/:id',
-    component: ProductDetailComponent,
-  },
-  {
-    path: 'my-cart',
-    component: MyCartComponent,
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-  },
-  {
-    path: 'recovery',
-    component: RecoveryComponent,
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'category/:id',
+        component: CategoryComponent,
+      },
+      {
+        path: 'product/:id',
+        component: ProductDetailComponent,
+      },
+      {
+        path: 'my-cart',
+        component: MyCartComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+      },
+      {
+        path: 'recovery',
+        component: RecoveryComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+    ],
   },
   {
     path: '**',
